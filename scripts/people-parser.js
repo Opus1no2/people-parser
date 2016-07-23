@@ -28,7 +28,7 @@ class PeopleParser {
     return this.data.sort((a, b) => {
       a = a.split(',')[2];
       b = b.split(',')[2];
-      return a < b ? -1 : a > b ? 1 : 0;
+      return a.localeCompare(b);
     });
   }
 
@@ -44,7 +44,7 @@ class PeopleParser {
     return this.data.sort((a, b) => {
       a = a.split(',')[0];
       b = b.split(',')[0];
-      return a < b ? -1 : a > b ? 1 : 0;
+      return a.localeCompare(b);
     });
   }
 };
