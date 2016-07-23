@@ -3,6 +3,12 @@
 var Parser = require('../../scripts/people-parser.js');
 
 describe('people-parser CLI application', function() {
+  it('should throw an error if a file is not found', function() {
+     expect(function(){ new Parser(['./data/bs', './data/csv', './data/ssv'])}).toThrow(new Error("Error: ENOENT: no such file or directory, open './data/bs'"));
+     expect(function(){ new Parser(['./data/bsv', './data/cs', './data/ssv'])}).toThrow(new Error("Error: ENOENT: no such file or directory, open './data/cs'"));
+     expect(function(){ new Parser(['./data/bsv', './data/csv', './data/ss'])}).toThrow(new Error("Error: ENOENT: no such file or directory, open './data/ss'"));
+  });
+
   it('should combine data from all files into a consistent format', function() {
     const expected = [ 'White,Lilla,female,magenta,11/8/1980',
       'McGlynn,Teresa,male,maroon,12/4/1977',

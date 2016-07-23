@@ -6,9 +6,17 @@ class PeopleParser {
     this.data = this.normalizeDataFromFiles(files);
   }
 
+  readFile(file) {
+    try {
+      return fs.readFileSync(file);
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+
   normalizeDataFromFiles(files) {
     return files.map((file) => {
-      return fs.readFileSync(file).toString().trim().split("\n");
+      return this.readFile(file).toString().trim().split("\n");
     }).reduce((pre, curr) => {
       return pre.concat(curr);
     }).map((vals) => {
