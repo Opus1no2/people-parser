@@ -31,6 +31,14 @@ class PeopleParser {
       }
     });
   }
+
+  orderByBirthDate(data) {
+    return data.sort((a, b) => {
+      a = new Date(a.split(',')[4]);
+      b = new Date(b.split(',')[4]);
+      return a < b ? -1 : a > b ? 1 : 0;
+    });
+  }
 };
 
 module.exports = PeopleParser;

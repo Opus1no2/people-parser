@@ -56,4 +56,25 @@ describe('people-parser CLI application', function() {
     let data = pp.normalizeDataFromFiles();
     expect(pp.ladiesFirst(data)).toEqual(femalesFirst);
   });
+
+  it('should sort by birthdate in ascending order', function() {
+    const orderedByBirthdate = [
+      'Bednar,Blake,male,maroon,1/23/1910',
+      'Ledner,Evert,male,purple,9/23/1915',
+      'Bayer,Lionel,female,plum,1/26/1934',
+      'Farrell,Helene,male,teal,1/14/1944',
+      'Flatley,Narciso,male,salmon,4/2/1966',
+      'Tillman,Dave,male,magenta,8/31/1974',
+      'McGlynn,Teresa,male,maroon,12/4/1977',
+      'White,Lilla,female,magenta,11/8/1980',
+      'Tillotson,Travis,male,blue,10/1/1984',
+      'Swaniawski,Tressie,female,pink,3/2/1987',
+      'Stokes,Kyle,female,gold,8/2/1988',
+      'Connell,Jude,female,white,10/19/2000'
+    ]
+
+    const p = new Parser(['./data/bsv', './data/csv', './data/ssv']);
+    let data = p.normalizeDataFromFiles();
+    expect(p.orderByBirthDate(data)).toEqual(orderedByBirthdate);
+  });
 });
