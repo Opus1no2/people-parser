@@ -18,4 +18,6 @@ Project structure
 
 Testing
 -------
-TODO - implement
+```
+npm test
+```

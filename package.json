@@ -3,10 +3,18 @@
   "version": "1.0.0",
   "description": "A tool for parsing data",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "eslint scripts/*.js && jasmine"
   },
   "repository": "git@github.com:Opus1no2/people-parser.git",
   "author": "Travis Tillotson",
-  "engines" : { "node" : "6.0.0" },
-  "license": "UNLICENSED"
+  "engines": {
+    "node": "6.0.0"
+  },
+  "license": "UNLICENSED",
+  "bin": {
+    "people-parser": "./scripts/index.js"
+  },
+  "devDependencies": {
+    "eslint": "^3.1.1"
+  }
 }
