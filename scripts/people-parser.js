@@ -3,19 +3,11 @@ const fs = require('fs');
 
 class PeopleParser {
   constructor(files) {
-    this.validateArgs(files);
-    this.files = files;
+    this.data = this.normalizeDataFromFiles(files);
   }
 
-  validateArgs(files) {
-    if (files.length < 3) {
-      console.log('Please provide 3 files as input');
-      return;
-    }
-  }
-
-  normalizeDataFromFiles() {
-    return this.files.map((file) => {
+  normalizeDataFromFiles(files) {
+    return files.map((file) => {
       return fs.readFileSync(file).toString().trim().split("\n");
     }).reduce((pre, curr) => {
       return pre.concat(curr);
@@ -24,24 +16,24 @@ class PeopleParser {
     });
   }
 
-  ladiesFirst(data) {
-    return data.sort((a, b) => {
-      if(a.split(',')[2].toUpperCase() < b.split(',')[2].toUpperCase()) {
-        return -1;
-      }
+  ladiesFirst() {
+    return this.data.sort((a, b) => {
+      a = a.split(',')[2];
+      b = b.split(',')[2];
+      return a < b ? -1 : a > b ? 1 : 0;
     });
   }
 
-  orderByBirthDate(data) {
-    return data.sort((a, b) => {
+  orderByBirthDate() {
+    return this.data.sort((a, b) => {
       a = new Date(a.split(',')[4]);
       b = new Date(b.split(',')[4]);
       return a < b ? -1 : a > b ? 1 : 0;
     });
   }
 
-  orderByLastName(data) {
-    return data.sort((a, b) => {
+  orderByLastName() {
+    return this.data.sort((a, b) => {
       a = a.split(',')[0];
       b = b.split(',')[0];
       return a < b ? -1 : a > b ? 1 : 0;

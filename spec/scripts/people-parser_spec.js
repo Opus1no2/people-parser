@@ -3,21 +3,6 @@
 var Parser = require('../../scripts/people-parser.js');
 
 describe('people-parser CLI application', function() {
-  it('Should log an error if given less that three files as input', function() {
-    const errMsg = 'Please provide 3 files as input';
-
-    spyOn(console, 'log');
-
-    let peopleParser2 = new Parser(['foo', 'bar']);
-    expect(console.log).toHaveBeenCalledWith(errMsg);
-
-    let peopleParser1 = new Parser(['foo']);
-    expect(console.log).toHaveBeenCalledWith(errMsg);
-
-    let peopleParser0 = new Parser([]);
-    expect(console.log).toHaveBeenCalledWith(errMsg);
-  });
-
   it('should combine data from all files into a consistent format', function() {
     const expected = [ 'White,Lilla,female,magenta,11/8/1980',
       'McGlynn,Teresa,male,maroon,12/4/1977',
@@ -34,7 +19,7 @@ describe('people-parser CLI application', function() {
     ];
 
     const peopleParser = new Parser(['./data/bsv', './data/csv', './data/ssv']);
-    expect(peopleParser.normalizeDataFromFiles()).toEqual(expected);
+    expect(peopleParser.data).toEqual(expected);
   });
 
   it('should sort data', function () {
@@ -53,8 +38,7 @@ describe('people-parser CLI application', function() {
     ];
 
     const pp = new Parser(['./data/bsv', './data/csv', './data/ssv']);
-    let data = pp.normalizeDataFromFiles();
-    expect(pp.ladiesFirst(data)).toEqual(femalesFirst);
+    expect(pp.ladiesFirst()).toEqual(femalesFirst);
   });
 
   it('should sort by birthdate in ascending order', function() {
@@ -74,8 +58,7 @@ describe('people-parser CLI application', function() {
     ]
 
     const p = new Parser(['./data/bsv', './data/csv', './data/ssv']);
-    let data = p.normalizeDataFromFiles();
-    expect(p.orderByBirthDate(data)).toEqual(orderedByBirthdate);
+    expect(p.orderByBirthDate()).toEqual(orderedByBirthdate);
   });
 
   it('should sort by last name in descending order', function() {
@@ -95,7 +78,6 @@ describe('people-parser CLI application', function() {
     ];
 
     const parseInstance = new Parser(['./data/bsv', './data/csv', './data/ssv']);
-    let data = parseInstance.normalizeDataFromFiles();
-    expect(parseInstance.orderByLastName(data)).toEqual(orderedByLastName);
+    expect(parseInstance.orderByLastName()).toEqual(orderedByLastName);
   });
 });
