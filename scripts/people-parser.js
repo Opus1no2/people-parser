@@ -14,11 +14,21 @@ class PeopleParser {
     }
   }
 
-  getDataFromFiles() {
-   return this.files.map((file) => {
-       return fs.readFileSync(file).toString().trim().split("\n");
+  normalizeDataFromFiles() {
+    return this.files.map((file) => {
+      return fs.readFileSync(file).toString().trim().split("\n");
     }).reduce((pre, curr) => {
       return pre.concat(curr);
+    }).map((vals) => {
+      return vals.split(/,|\||\s/).join(',');
+    });
+  }
+
+  ladiesFirst(data) {
+    return data.sort((a, b) => {
+      if(a.split(',')[2].toUpperCase() < b.split(',')[2].toUpperCase()) {
+        return -1;
+      }
     });
   }
 };
