@@ -52,7 +52,7 @@ class PeopleParser {
   }
 
   orderByLastName() {
-    return this.sortByLastName(this.data)
+    return this.sortByLastName(this.data);
   }
 
   toJson(data) {
@@ -63,7 +63,7 @@ class PeopleParser {
         gender: vals.split(',')[2],
         color: vals.split(',')[3],
         birthdate: vals.split(',')[4]
-      }
+      };
     }));
   }
 };
