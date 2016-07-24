@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A tool for parsing data",
   "scripts": {
-    "test": "eslint scripts/*.js && jasmine",
+    "test": "eslint scripts/*.js && jasmine-node spec/",
     "start": "node api/server"
   },
   "repository": "git@github.com:Opus1no2/people-parser.git",

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 'use strict';
-const success = require('cli-color').green
+const success = require('cli-color').green;
 const PeopleParser = require('../api/server/lib/people-parser');
 
 if (process.argv.slice(2).length < 3) {
