@@ -5,7 +5,6 @@ const PeopleParser = require('./people-parser');
 
 if (process.argv.slice(2).length < 3) {
   console.log('please provide 3 files as input');
-  process.exit(1);
 }
 
 const parser = new PeopleParser(process.argv.slice(2));
