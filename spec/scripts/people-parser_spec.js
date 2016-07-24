@@ -1,18 +1,21 @@
 'use strict';
 
-var Parser = require('../../scripts/people-parser.js');
+var Parser = require('../../api/server/lib/people-parser.js');
 
 describe('people-parser CLI application', () => {
-  const peopleParser = new Parser(['./data/bsv', './data/csv', './data/ssv']);
+  const args = [
+    __dirname + '/../data/bsv',
+    __dirname + '/../data/csv',
+    __dirname + '/../data/ssv'
+  ];
+  const peopleParser = new Parser(args);
 
   let error = (file) => {
     return `Error: ENOENT: no such file or directory, open '${file}'`
   }
 
   it('should throw an error if a file is not found', () => {
-     expect(function(){ new Parser(['./data/bs', './data/csv', './data/ssv'])}).toThrow(new Error(error('./data/bs')));
-     expect(function(){ new Parser(['./data/bsv', './data/cs', './data/ssv'])}).toThrow(new Error(error('./data/cs')));
-     expect(function(){ new Parser(['./data/bsv', './data/csv', './data/ss'])}).toThrow(new Error(error('./data/ss')));
+    expect(function(){ new Parser(['./data/bs', './data/csv', './data/ssv'])}).toThrow(new Error(error('./data/bs')));
   });
 
   it('should combine data from all files into a consistent format', () => {
