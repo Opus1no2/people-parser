@@ -93,4 +93,11 @@ describe('people-parser CLI application', () => {
 
     expect(peopleParser.orderByLastName()).toEqual(orderedByLastName);
   });
+
+  it('should convert a csv format to json', () => {
+
+    const expected = '[{"lastname":"Bayer","firstname":"Lionel","gender":"female","color":"plum","birthdate":"1/26/1934"},{"lastname":"Bednar","firstname":"Blake","gender":"male","color":"maroon","birthdate":"1/23/1910"},{"lastname":"Connell","firstname":"Jude","gender":"female","color":"white","birthdate":"10/19/2000"},{"lastname":"Farrell","firstname":"Helene","gender":"male","color":"teal","birthdate":"1/14/1944"},{"lastname":"Flatley","firstname":"Narciso","gender":"male","color":"salmon","birthdate":"4/2/1966"},{"lastname":"Ledner","firstname":"Evert","gender":"male","color":"purple","birthdate":"9/23/1915"},{"lastname":"McGlynn","firstname":"Teresa","gender":"male","color":"maroon","birthdate":"12/4/1977"},{"lastname":"Stokes","firstname":"Kyle","gender":"female","color":"gold","birthdate":"8/2/1988"},{"lastname":"Swaniawski","firstname":"Tressie","gender":"female","color":"pink","birthdate":"3/2/1987"},{"lastname":"Tillman","firstname":"Dave","gender":"male","color":"magenta","birthdate":"8/31/1974"},{"lastname":"Tillotson","firstname":"Travis","gender":"male","color":"blue","birthdate":"10/1/1984"},{"lastname":"White","firstname":"Lilla","gender":"female","color":"magenta","birthdate":"11/8/1980"}]';
+
+    expect(peopleParser.toJson(peopleParser.orderByLastName())).toEqual(expected);
+  })
 });

@@ -47,6 +47,18 @@ class PeopleParser {
       return a.localeCompare(b);
     });
   }
+
+  toJson(data) {
+    return JSON.stringify(data.map((vals) => {
+      return {
+        lastname: vals.split(',')[0],
+        firstname: vals.split(',')[1],
+        gender: vals.split(',')[2],
+        color: vals.split(',')[3],
+        birthdate: vals.split(',')[4]
+      }
+    }));
+  }
 };
 
 module.exports = PeopleParser;
