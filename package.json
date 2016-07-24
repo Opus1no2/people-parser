@@ -21,6 +21,7 @@
     "jasmine-node": "^1.14.5"
   },
   "dependencies": {
+    "body-parser": "^1.15.2",
     "cli-color": "^1.1.0",
     "request": "^2.74.0"
   }
