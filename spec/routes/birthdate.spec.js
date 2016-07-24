@@ -14,8 +14,10 @@ describe("API Server", function() {
     });
 
     it("returns a response body", function(done) {
+      const expected = '[{"lastname":"Bednar","firstname":"Blake","gender":"male","color":"maroon","birthdate":"1/23/1910"},{"lastname":"Ledner","firstname":"Evert","gender":"male","color":"purple","birthdate":"9/23/1915"},{"lastname":"Bayer","firstname":"Lionel","gender":"female","color":"plum","birthdate":"1/26/1934"},{"lastname":"Farrell","firstname":"Helene","gender":"male","color":"teal","birthdate":"1/14/1944"},{"lastname":"Flatley","firstname":"Narciso","gender":"male","color":"salmon","birthdate":"4/2/1966"},{"lastname":"Tillman","firstname":"Dave","gender":"male","color":"magenta","birthdate":"8/31/1974"},{"lastname":"McGlynn","firstname":"Teresa","gender":"male","color":"maroon","birthdate":"12/4/1977"},{"lastname":"White","firstname":"Lilla","gender":"female","color":"magenta","birthdate":"11/8/1980"},{"lastname":"Tillotson","firstname":"Travis","gender":"male","color":"blue","birthdate":"10/1/1984"},{"lastname":"Swaniawski","firstname":"Tressie","gender":"female","color":"pink","birthdate":"3/2/1987"},{"lastname":"Stokes","firstname":"Kyle","gender":"female","color":"gold","birthdate":"8/2/1988"},{"lastname":"Connell","firstname":"Jude","gender":"female","color":"white","birthdate":"10/19/2000"}]';
+
       request.get(base_url, function(error, response, body) {
-        expect(response.body).toBe("hello from birthdate");
+        expect(body).toEqual(expected);
         done();
       });
     });
