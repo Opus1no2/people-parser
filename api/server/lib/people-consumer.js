@@ -5,6 +5,15 @@ const fs = require('fs');
 class PeopleConsumer {
   constructor(data) {
     this.data = data;
+    this.requiredKeys = ['lastname', 'firstname', 'gender', 'color', 'birthdate'];
+  }
+
+  hasKeys() {
+    this.requiredKeys.forEach((key) => {
+      if (!this.data.hasOwnProperty(key)) {
+        throw new Error('Invalid object');
+      }
+    });
   }
 
   toCSV() {
@@ -23,6 +32,11 @@ class PeopleConsumer {
     } catch (e) {
       throw new Error(e);
     }
+  }
+
+  consume(file) {
+    this.hasKeys();
+    this.writeToFile(file);
   }
 }
 
