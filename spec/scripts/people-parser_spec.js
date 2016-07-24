@@ -39,19 +39,18 @@ describe('people-parser CLI application', () => {
 
   it('should sort data by gender', () => {
     const femalesFirst = [
-      'White,Lilla,female,magenta,11/8/1980',
       'Bayer,Lionel,female,plum,1/26/1934',
-      'Stokes,Kyle,female,gold,8/2/1988',
       'Connell,Jude,female,white,10/19/2000',
+      'Stokes,Kyle,female,gold,8/2/1988',
       'Swaniawski,Tressie,female,pink,3/2/1987',
-      'Flatley,Narciso,male,salmon,4/2/1966',
-      'McGlynn,Teresa,male,maroon,12/4/1977',
-      'Ledner,Evert,male,purple,9/23/1915',
+      'White,Lilla,female,magenta,11/8/1980',
       'Bednar,Blake,male,maroon,1/23/1910',
-      'Tillman,Dave,male,magenta,8/31/1974',
       'Farrell,Helene,male,teal,1/14/1944',
-      'Tillotson,Travis,male,blue,10/1/1984'
-    ];
+      'Flatley,Narciso,male,salmon,4/2/1966',
+      'Ledner,Evert,male,purple,9/23/1915',
+      'McGlynn,Teresa,male,maroon,12/4/1977',
+      'Tillman,Dave,male,magenta,8/31/1974',
+      'Tillotson,Travis,male,blue,10/1/1984' ];
 
     expect(peopleParser.ladiesFirst()).toEqual(femalesFirst);
   });

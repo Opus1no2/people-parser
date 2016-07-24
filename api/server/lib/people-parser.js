@@ -24,12 +24,23 @@ class PeopleParser {
     });
   }
 
-  ladiesFirst() {
-    return this.data.sort((a, b) => {
-      a = a.split(',')[2];
-      b = b.split(',')[2];
+  sortByLastName(array) {
+    return array.sort((a, b) => {
+      a = a.split(',')[0];
+      b = b.split(',')[0];
       return a.localeCompare(b);
     });
+  }
+
+  ladiesFirst() {
+    const females = this.data.filter((female) => {
+      return female.split(',')[2] === 'female';
+    });
+    const males = this.data.filter((male) => {
+      return male.split(',')[2] === 'male';
+    });
+
+    return this.sortByLastName(females).concat(this.sortByLastName(males));
   }
 
   orderByBirthDate() {
@@ -41,11 +52,7 @@ class PeopleParser {
   }
 
   orderByLastName() {
-    return this.data.sort((a, b) => {
-      a = a.split(',')[0];
-      b = b.split(',')[0];
-      return a.localeCompare(b);
-    });
+    return this.sortByLastName(this.data)
   }
 
   toJson(data) {
